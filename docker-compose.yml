@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./Techdome-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"  # Map the frontend's port to localhost
+
+  backend:
+    build:
+      context: ./Techdome-backend
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=NewPassword1234
+      - DB_NAME=Techdome-DB
+    ports:
+      - "3000:3000"  # Map the backend's port to localhost
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=NewPassword1234
+      - POSTGRES_DB=Techdome-DB
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # Expose PostgreSQL on port 5432
+
+volumes:
+  postgres_data:

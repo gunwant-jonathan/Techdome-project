@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techdome-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techdome-backend
+  template:
+    metadata:
+      labels:
+        app: techdome-backend
+    spec:
+      containers:
+      - name: techdome-backend
+        image: pasupathikumar819/techdome-backend:latest
+        env:
+          - name: DB_HOST
+            value: "postgres"   # Matches the PostgreSQL service name
+          - name: DB_PORT
+            value: "5432"
+          - name: DB_USER
+            value: "postgres"
+          - name: DB_PASSWORD
+            value: "NewPassword1234"
+          - name: DB_NAME
+            value: "Techdome-DB"
+        ports:
+          - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: techdome-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: techdome-backend
+  ports:
+    - port: 3000
+      targetPort: 3000
