@@ -65,10 +65,10 @@ Configure NodePort or LoadBalancer for exposing the services.
 Access the Application Locally:
 
 Use kubectl port-forward to forward the ports of the frontend service to your local machine.
-Once the port is forwarded, access the application via http://localhost:5000.
+Once the port is forwarded, access the application via http://localhost:3000.
 Deployment Verification
 After running the kubectl apply commands for each service, verify that the services are correctly deployed by checking the Kubernetes pods and services.
-If everything is deployed correctly, open your browser and visit http://localhost:5000 to access the frontend of the TechDome application.
+If everything is deployed correctly, open your browser and visit http://localhost:3000 to access the frontend of the TechDome application.
 Conclusion
 By following these steps, you will have successfully:
 
