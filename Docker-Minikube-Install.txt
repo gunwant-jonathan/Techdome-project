@@ -1,3 +1,5 @@
+#install docker on ubnutu
+
 sudo apt update
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -7,7 +9,8 @@ sudo apt install docker-ce
 sudo usermod -aG docker $USER
 newgrp docker
 
-
+-------------------------------------------------------------------------------------------
+#minikube install on ubuntu
 
 sudo apt update
 sudo apt install -y curl apt-transport-https
@@ -20,8 +23,25 @@ sudo mv minikube-linux-amd64 /usr/local/bin/minikube
 
 minikube start
 
+-----------------------------------------------------------------------------------------------
+#minikube install on windows
+
+New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
+
+Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
+
+$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
+
+if ($oldPath.Split(';') -inotcontains 'C:\minikube'){
+  [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine)
+}
+
+Minikube start
+
+-----------------------------------------------------------------------------------------------------
+#project access
 
 kubectl get pods
 
-
 kubectl port-forward pod/techdome-frontend-fdfb9f5f4-sc5cj 5000:5000 #change cluster port into localhost
+
