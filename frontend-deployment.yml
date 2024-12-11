@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: techdome-frontend
-        image: hackur/techfrontend:latest
+        image: hackur/frontend:latest
         ports:
           - containerPort: 3000
 ---
