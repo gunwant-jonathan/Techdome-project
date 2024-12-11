@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: techdome-backend
-        image: hackur/backendo:latest
+        image: hackur/backend:latest
         env:
           - name: DB_HOST
             value: "postgres"   # Matches the PostgreSQL service name
